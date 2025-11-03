@@ -1,4 +1,4 @@
-function Navbar({ searchQuery, setSearchQuery, filterType, setFilterType, breweryTypes }) {
+function Navbar({ searchQuery = '', setSearchQuery = () => {}, filterType = 'all', setFilterType = () => {}, breweryTypes = [] }) {
   return (
     <nav className="navbar">
       <h1>Brewery Finder</h1>
@@ -17,7 +17,7 @@ function Navbar({ searchQuery, setSearchQuery, filterType, setFilterType, brewer
           onChange={(e) => setFilterType(e.target.value)}
         >
           <option value="all">All Types</option>
-          {breweryTypes.map(type => (
+          {Array.isArray(breweryTypes) && breweryTypes.map(type => (
             <option key={type} value={type}>{type}</option>
           ))}
         </select>

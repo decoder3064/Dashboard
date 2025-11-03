@@ -2,10 +2,13 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import List from './List';
 import Navbar from './Navbar';
+import TypeChart from './TypeChart'
+import StateChart from './StateChart'
 
 function DashBoard() {
     const [breweries, setBreweries] = useState([])
     const [filteredBreweries, setFilteredBreweries] = useState([])
+    const [loading, setLoading] = useState(true)
     const [searchQuery, setSearchQuery] = useState('')
     const [filterType, setFilterType] = useState('all')
 
@@ -74,6 +77,11 @@ function DashBoard() {
                         <h3>{withWebsites}</h3>
                         <p>Have Websites</p>
                     </div>
+                </div>
+
+                <div className="charts">
+                    <TypeChart breweries={breweries} />
+                    <StateChart breweries={breweries} />
                 </div>
 
                 <List breweries={filteredBreweries} />
